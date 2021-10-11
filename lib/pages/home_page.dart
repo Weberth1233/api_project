@@ -1,5 +1,8 @@
+import 'package:api_project/api/movie_api.dart';
 import 'package:api_project/api/post_api.dart';
+import 'package:api_project/models/movie_model.dart';
 import 'package:api_project/models/post_models.dart';
+import 'package:api_project/pages/movie_page.dart';
 import 'package:api_project/pages/post_page.dart';
 import 'package:flutter/material.dart';
 
@@ -27,13 +30,23 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text(
+          widget.title,
+          style:
+              const TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+        ),
+        actions: [
+          const Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Icon(Icons.search),
+          )
+        ],
       ),
       body: FutureBuilder(
-        future: API.getPosts(),
-        builder: (context, AsyncSnapshot<List<Post>> snapshot) {
+        future: MovieAPI.getMovies(),
+        builder: (context, AsyncSnapshot<List<Movie>> snapshot) {
           if (snapshot.hasData) {
-            return PostPage(lista: snapshot.data!);
+            return MoviePage(lista: snapshot.data!);
           } else if (snapshot.hasError) {
             return Text("${snapshot.error}");
           }
