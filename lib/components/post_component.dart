@@ -13,7 +13,7 @@ class _PostComponentState extends State<PostComponent> {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: const Icon(Icons.book, color: Colors.indigo),
+      leading: const Icon(Icons.book, color: Colors.blue),
       title: Text(
         widget.post.title,
         style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 9),
